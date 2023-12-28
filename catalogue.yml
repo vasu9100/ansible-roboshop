@@ -39,7 +39,7 @@
 
     - name: Daemon Realoaded
       systemd:
-      daemon_reload: yes
+        daemon_reload: yes
 
     - name: Star & Enable catalogue
       service:
