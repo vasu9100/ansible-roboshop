@@ -74,5 +74,8 @@
       debug:
         var: ansible_run_status
 
+    - name: Debug information
+      debug:
+        msg: "Marker file exists: {{ '/app/data_loaded_marker' | stat | default({}) | bool }}"
 
       
