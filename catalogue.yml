@@ -35,4 +35,15 @@
     - name: Install Libries
       command: npm install
       args:
-        chdir: /app    
+        chdir: /app
+
+    - name: Daemon Realoaded
+      service:
+        name: daemon
+      state: reloaded
+
+    - name: Star & Enable catalogue
+      service:
+        name: catalogue
+        state: started
+        enable: yes 
