@@ -1,6 +1,6 @@
 ---
 - name: This Playbook For Mongo-Db Installation
-  hosts: mongo-db
+  hosts: all
   become: true
   tasks:
   - name: Setup the MongoDB repo file
