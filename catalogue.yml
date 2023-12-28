@@ -10,7 +10,7 @@
       command: dnf module enable nodejs:18 -y
 
     - name: Installing Node-Js
-      command: dnf install nodejs
+      command: dnf install nodejs -y
 
     - name: RoboShop-User-Creation
       user:
