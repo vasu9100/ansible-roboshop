@@ -40,7 +40,7 @@
     - name: Daemon Realoaded
       service:
         name: daemon
-      state: reloaded
+        state: reloaded
 
     - name: Star & Enable catalogue
       service:
