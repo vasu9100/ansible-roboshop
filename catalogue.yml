@@ -38,9 +38,8 @@
         chdir: /app
 
     - name: Daemon Realoaded
-      service:
-        name: daemon
-        state: reloaded
+      systemd:
+      daemon_reload: yes
 
     - name: Star & Enable catalogue
       service:
