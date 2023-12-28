@@ -50,4 +50,15 @@
       service:
         name: catalogue
         state: restarted
-        enabled: yes 
+        enabled: yes
+
+    - name: Setup the MongoDB repo file
+      copy:
+        src: /home/centos/ansible-roboshop/mongo.repo
+        dest: /etc/yum.repos.d/
+        mode: 0644
+
+    - name: Installing-Mongo-shell
+      package:
+        name: mongodb-org-shell
+        state: present         
