@@ -3,11 +3,10 @@
   hosts: catalogue
   become: true
   tasks:
-  - name: Disabling Node-JS
-    - name: Disable Node.js module
+  - name: Disable Node.js module
       command: dnf module disable nodejs -y
       become: true
 
-    - name: Enable Node.js module version 18
+  - name: Enable Node.js module version 18
       command: dnf module enable nodejs:18 -y
       become: true 
