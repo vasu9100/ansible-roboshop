@@ -20,4 +20,8 @@
       file:
         path: /app
         state: directory
-
+    
+    - name: Downloading catalogue.service
+      get_url:
+        url: curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+        dest: /tmp/catalogue.zip
