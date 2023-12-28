@@ -72,6 +72,7 @@
 
     - name: Debug information
       debug:
-        msg: "Marker file exists: {{ lookup('file', '/app/data_loaded_marker') | bool }}"
+        var: ansible_run_status
+
 
       
