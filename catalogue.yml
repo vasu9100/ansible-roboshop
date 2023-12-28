@@ -72,5 +72,6 @@
 
     - name: Debug information
       debug:
-        msg: "Marker file exists: {{ '/app/data_loaded_marker' | stat }}"
+        msg: "Marker file exists: {{ lookup('file', '/app/data_loaded_marker') | bool }}"
+
       
