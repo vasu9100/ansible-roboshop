@@ -42,7 +42,7 @@
         daemon_reload: yes
 
     - name: Star & Enable catalogue
-      service:
+      systemd:
         name: catalogue
         state: started
         enable: yes 
