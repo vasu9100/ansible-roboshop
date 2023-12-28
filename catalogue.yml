@@ -25,3 +25,9 @@
       get_url:
         url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
         dest: /tmp/catalogue.zip
+
+    - name: Unzipping catalogue.service
+      unarchive:
+        src: /tmp/catalogue.zip
+        dest: /app
+        remote_src: yes
