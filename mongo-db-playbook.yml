@@ -5,7 +5,7 @@
   tasks:
   - name: Setup the MongoDB repo file
     copy:
-      src: /home/centos/mongo.repo
+      src: /home/centos/ansible-roboshop/mongo.repo
       dest: /etc/yum.repos.d/
       mode: 0644
   - name: Installing Mongo-DB
