@@ -62,9 +62,10 @@
       package:
         name: mongodb-org-shell
         state: present
-                 
+
     - name: Load data into MongoDB (first run only)
       command: mongo --host mongodb.gonepudirobot.online > /app/schema/catalogue.js
       args:
         creates: /app/data_loaded_marker
-      changed_when: false    
+      changed_when: false
+      ignore_errors: yes    
