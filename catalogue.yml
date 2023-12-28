@@ -8,3 +8,16 @@
 
     - name: Enable Node.js module version 18
       command: dnf module enable nodejs:18 -y
+
+    - name: Installing Node-Js
+      command: dnf install nodejs
+
+    - name: RoboShop-User-Creation
+      user:
+        name: johnd
+    
+    - name: App Directory Creation      
+      file:
+        path: /app
+        state: directory
+
