@@ -31,7 +31,12 @@
         src: /tmp/catalogue.zip
         dest: /app
         remote_src: yes
-
+    
+    - name: Copying Catalogue.service file
+      copy:
+        src:  /home/centos//ansible-roboshop/catalogue.service
+        dest: /etc/systemd/system/
+        
     - name: Install Libries
       command: npm install
       args:
@@ -41,8 +46,8 @@
       systemd:
         daemon_reload: yes
 
-    - name: Star & Enable catalogue
-      systemd:
+    - name: Start & Enable catalogue
+      service:
         name: catalogue
-        state: started
+        state: restarted
         enable: yes 
