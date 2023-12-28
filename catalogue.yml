@@ -68,4 +68,9 @@
       args:
         creates: /app/data_loaded_marker
       changed_when: false
-      ignore_errors: yes    
+      ignore_errors: yes
+
+    - name: Debug information
+      debug:
+        msg: "Marker file exists: {{ '/app/data_loaded_marker' | stat }}"
+      
