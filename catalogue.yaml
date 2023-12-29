@@ -1,0 +1,11 @@
+---
+- name: THIS PLAYBOOK FOR CATALOGUE API APPLICATION
+  hosts: catalogue
+  become: true
+  tasks:
+    - name: DISABLE OLD AND ENABLE NODE JS LATEST VERSION
+      command: "{{ item }}"
+      loop:
+        - dnf module disable nodejs -y
+        - dnf module enable nodejs:18 -y
+        - dnf install nodejs -y
