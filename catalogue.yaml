@@ -30,3 +30,14 @@
       command: npm install
       args:
         chdir: /app
+    - name: COPYING CATALOGUE.SERVICE
+      copy:
+        src: /home/centos/ansible-roboshop/catalogue.service
+        dest: /etc/systemd/system/catalogue.service
+    - name: SYSTEM RESTART
+      command: "{{item}}"
+      loop:
+        - systemctl daemon-reload
+        - systemctl enable catalogue
+        - systemctl start catalogue
+               
