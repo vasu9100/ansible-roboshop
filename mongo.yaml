@@ -22,7 +22,7 @@
         path: /etc/mongod.conf
         regexp: '127.0.0.1'
         replace: '0.0.0.0'
-        notify: RESTART MONGOD
+      notify: RESTART MONGOD
   handlers:
     - name: RESTART MONGOD
       service:
