@@ -52,7 +52,7 @@
         state: present
 
     - name: Check if data exists in MongoDB
-      command: mongo --host mongodb.gonepudirobot.online --quiet --eval "db.user.countDocuments({})"
+      command: mongo --host mongodb.gonepudirobot.online --quiet --eval "db.users.findOne({})"
       ignore_errors: true
       register: mongo_check_result
 
