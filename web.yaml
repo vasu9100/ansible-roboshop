@@ -1,0 +1,34 @@
+---
+- name: THIS PLAY BOOK FOR NGNIX SERVER INSTALLATION
+  hosts: web
+  become: yes
+  tasks:
+  - name: INSTALLING NGNIX SERVER
+    package:
+      name: nginx
+      state: present
+  - name: START NGINX
+    service:
+      name: nginx
+      state: started
+      enabled: yes
+  - name: REMOVING DEFAULT CONTENT
+    file:
+      path: /usr/share/nginx/html/*
+      state: absent
+  - name: DOWNLOAD FRONT END URL
+    get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/web.zip
+      dest: /tmp
+  - name: UNZIPPING FRONT END CODE
+    unarchive:
+      src: /tmp/web.zip
+      dest: /usr/share/nginx/html/ 
+  - name: COPYING ROBOSHOP.CONF
+    copy:
+      src: /home/centos/ansible-roboshop/roboshop.conf
+      dest: /etc/nginx/default.d/
+  - name: RESTARTING NGINX
+    service:
+      name: nginx
+      state: restarted                    

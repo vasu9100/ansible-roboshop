@@ -1,5 +1,2 @@
-[mongo-db]
-mongodb.gonepudirobot.online
-[catalogue]
-catalogue.gonepudirobot.online
-
+[web]
+gonepudirobot.online
