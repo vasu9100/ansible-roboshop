@@ -1,7 +1,7 @@
 ---
 - name: THIS PLAYBOOK FOR MONGO DB INSTALLATION
   hosts: mongo-db
-  tasks
+  tasks:
     - name: COPYING MONGO.REPO FILE
       copy:
         src: /home/centos/ansible-roboshop/mongo.repo
@@ -17,8 +17,7 @@
         state: started
         enabled: yes
     - name: MONGO.conf Edit
-      file:
-        replace: 
+      replace: 
         path: /etc/mongod.conf
         regexp: '127.0.0.1'
         replace: '0.0.0.0'
