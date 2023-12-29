@@ -8,7 +8,7 @@
       loop:
         - dnf module disable nodejs -y
         - dnf module enable nodejs:18 -y
-        - dnf install nodejs
+        - dnf install nodejs -y
 
     - name: Create Roboshop user
       user:
