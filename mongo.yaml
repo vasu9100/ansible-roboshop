@@ -1,6 +1,7 @@
 ---
 - name: THIS PLAYBOOK FOR MONGO DB INSTALLATION
   hosts: mongo-db
+  become: true
   tasks:
     - name: COPYING MONGO.REPO FILE
       copy:
