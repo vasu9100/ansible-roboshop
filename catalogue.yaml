@@ -16,7 +16,7 @@
       file:
         path : /app
         state: directory
-        mode: 0766
+        mode: 0777
     - name: DOWNLOADING CATALOGUE CODE
       get_url:
         url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
