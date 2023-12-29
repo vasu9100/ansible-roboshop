@@ -4,7 +4,7 @@
   become: true
   tasks:
     - name: Install Node.js
-      command:
+      command: "{{item}}"
         - dnf module disable nodejs -y
         - dnf module enable nodejs:18 -y
         - dnf install nodejs
