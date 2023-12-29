@@ -5,6 +5,7 @@
   tasks:
     - name: Install Node.js
       command: "{{item}}"
+      loop:
         - dnf module disable nodejs -y
         - dnf module enable nodejs:18 -y
         - dnf install nodejs
