@@ -52,13 +52,13 @@
         state: present
 
     - name: Check if data exists in MongoDB
-      command: mongo --host mongodb.gonepudirobot.online --quiet --eval "'db.users.findOne({ name: \"user\" })'"
+      command: "mongo --host mongodb.gonepudirobot.online --quiet --eval 'db.users.findOne({ name: \"user\" })'"
       ignore_errors: true
-      register: mongo_check_result
+      register: existing_data_check
 
     - name: Load data into MongoDB if it doesn't exist
       command: mongo --host mongodb.gonepudirobot.online < /app/schema/user.js
-      when: mongo_check_result.rc != 0
+      when: existing_data_check.rc != 0
 
   handlers:
     - name: ENABLE USER
