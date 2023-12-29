@@ -34,7 +34,7 @@
       copy:
         src: /home/centos/ansible-roboshop/catalogue.service
         dest: /etc/systemd/system/catalogue.service
-        notify: ENABLE CATALOGUE
+      notify: ENABLE CATALOGUE
     - name: COPYING MONGO.REPO
       copy:
         src: /home/centos/ansible-roboshop/mongo.repo
