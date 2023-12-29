@@ -34,10 +34,19 @@
       copy:
         src: /home/centos/ansible-roboshop/catalogue.service
         dest: /etc/systemd/system/catalogue.service
-    - name: SYSTEM RESTART
-      command: "{{item}}"
-      loop:
-        - systemctl daemon-reload
-        - systemctl enable catalogue
-        - systemctl start catalogue
-               
+        notify: ENABLE CATALOGUE
+    - name: COPYING MONGO.REPO
+      copy:
+        src: /home/centos/ansible-roboshop/mongo.repo
+        dest: /etc/yum.repos.d/
+    - name: INSTALLAING MONGO SHELL
+      dnf:
+        name: mongodb-org-shell
+        state: present       
+  handlers:    
+  - name: ENABLE CATALOGUE
+    command: "{{item}}"
+    loop:
+      - systemctl daemon-reload
+      - systemctl enable catalogue
+      - systemctl start catalogue
