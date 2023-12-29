@@ -29,7 +29,7 @@
     copy:
       src: /home/centos/ansible-roboshop/roboshop.conf
       dest: /etc/nginx/default.d/
-      notify: RESTART NGINX
+    notify: RESTART NGINX
   handlers:    
   - name: RESTART NGINX
     service:
