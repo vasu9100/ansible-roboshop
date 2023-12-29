@@ -39,7 +39,7 @@
       copy:
         src: /home/centos/ansible-roboshop/user.service
         dest: /etc/systemd/system/
-      notify: ENABLE user
+      notify: ENABLE USER
 
     - name: Copying MONGO.REPO
       copy:
