@@ -9,3 +9,23 @@
         - dnf module disable nodejs -y
         - dnf module enable nodejs:18 -y
         - dnf install nodejs -y
+    - name: CREATING ROBOSHOP USER
+      user: roboshop
+    - name: CREATING APP DIRECTORY
+      file:
+        path : /app
+        state: directory
+        mode: 0766
+    - name: DOWNLOADING CATALOGUE CODE
+      get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+        dest: /tmp
+    - name: UNZIPPING CODE
+      unarchive:
+        src: /tmp/catalogue.zip
+        dest: /app
+        remote_src: yes
+    - name: NPM ISNTALLATION PART
+      command: npm install
+      args:
+        chdir: /app
