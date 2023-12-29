@@ -10,7 +10,8 @@
         - dnf module enable nodejs:18 -y
         - dnf install nodejs -y
     - name: CREATING ROBOSHOP USER
-      user: roboshop
+      user:
+        name: roboshop
     - name: CREATING APP DIRECTORY
       file:
         path : /app
