@@ -2,3 +2,5 @@
 gonepudirobot.online
 [catalogue]
 catalogue.gonepudirobot.online
+[mongo-db]
+mongodb.gonepudirobot.online

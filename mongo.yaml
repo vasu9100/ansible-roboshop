@@ -1,0 +1,30 @@
+---
+- name: THIS PLAYBOOK FOR MONGO DB INSTALLATION
+  hosts: mongo-db
+  tasks
+    - name: COPYING MONGO.REPO FILE
+      copy:
+        src: /home/centos/ansible-roboshop/mongo.repo
+        dest: /etc/yum.repos.d/
+        remote_src: yes
+    - name: INSTALLING MONGO DB
+      dnf:
+        name: mongo-repo
+        state: present
+    - name: MONGO START
+      service:
+        name: mongod
+        state: started
+        enabled: yes
+    - name: MONGO.conf Edit
+      file:
+        replace: 
+        path: /etc/mongod.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+        notify: RESTART MONGOD
+  handlers:
+    - name: RESTART MONGOD
+      service:
+        name: mongod
+        state: restarted    
