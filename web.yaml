@@ -23,7 +23,8 @@
   - name: UNZIPPING FRONT END CODE
     unarchive:
       src: /tmp/web.zip
-      dest: /usr/share/nginx/html/ 
+      dest: /usr/share/nginx/html/
+      remote_src: yes
   - name: COPYING ROBOSHOP.CONF
     copy:
       src: /home/centos/ansible-roboshop/roboshop.conf
