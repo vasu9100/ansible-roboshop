@@ -6,7 +6,7 @@
       copy:
         src: /home/centos/ansible-roboshop/mongo.repo
         dest: /etc/yum.repos.d/
-        remote_src: yes
+        #remote_src: yes
     - name: INSTALLING MONGO DB
       dnf:
         name: mongo-repo
