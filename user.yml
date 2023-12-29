@@ -2,57 +2,67 @@
 - name: THIS PLAY BOOK FOR USER DATA API SERVER
   hosts: users
   become: true
-  tasks
-    - name:
+  tasks:
+    - name: Install Node.js
       command:
         - dnf module disable nodejs -y
         - dnf module enable nodejs:18 -y
         - dnf install nodejs
-    - name: CREATING ROBOSHOP USER
+
+    - name: Create Roboshop user
       user:
         name: roboshop
+
     - name: App directory creation
       file:
         path: /app
         state: directory
-    - name: dowloading user data
+
+    - name: Downloading user data
       get_url:
         url: https://roboshop-builds.s3.amazonaws.com/user.zip
         dest: /tmp
-    - name: unzipp user.zip
+
+    - name: Unzip user.zip
       unarchive:
         src: /tmp/user.zip
         dest: /app
         remote_src: yes
-    - name: npm installation
+
+    - name: Npm installation
       command: npm install
       args:
         chdir: /app
-    - name: COPYING CATALOGUE.SERVICE
+
+    - name: Copying CATALOGUE.SERVICE
       copy:
         src: /home/centos/ansible-roboshop/user.service
         dest: /etc/systemd/system/user.service
-      notify: ENABLE user    
-    - name: COPYING MONGO.REPO
+      notify: ENABLE user
+
+    - name: Copying MONGO.REPO
       copy:
         src: /home/centos/ansible-roboshop/mongo.repo
         dest: /etc/yum.repos.d/
-    - name: INSTALLAING MONGO SHELL
+
+    - name: Installing MONGO SHELL
       dnf:
         name: mongodb-org-shell
         state: present
-    - name: CHECK IF DATA EXISTS IN MONGODB
+
+    - name: Check if data exists in MongoDB
       command: mongo --host mongodb.gonepudirobot.online --quiet --eval "db.user.countDocuments({})"
       ignore_errors: true
       register: mongo_check_result
-    - name: LOAD DATA INTO MONGODB IF IT DOESN'T EXIST
+
+    - name: Load data into MongoDB if it doesn't exist
       command: mongo --host mongodb.gonepudirobot.online < /app/schema/user.js
       when: mongo_check_result.rc != 0
-  handlers:    
-  - name: ENABLE USER
-    command: "{{item}}"
-    loop:
-      - systemctl daemon-reload
-      - systemctl enable catalogue
-      - systemctl restart catalogue    
-                     
+
+  handlers:
+    - name: ENABLE USER
+      command: "{{ item }}"
+      loop:
+        - systemctl daemon-reload
+        - systemctl enable catalogue
+        - systemctl restart catalogue
