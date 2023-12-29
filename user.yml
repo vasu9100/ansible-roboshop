@@ -35,10 +35,10 @@
       args:
         chdir: /app
 
-    - name: Copying CATALOGUE.SERVICE
+    - name: Copying user.SERVICE
       copy:
         src: /home/centos/ansible-roboshop/user.service
-        dest: /etc/systemd/system/user.service
+        dest: /etc/systemd/system/
       notify: ENABLE user
 
     - name: Copying MONGO.REPO
