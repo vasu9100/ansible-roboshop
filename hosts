@@ -4,3 +4,5 @@ gonepudirobot.online
 catalogue.gonepudirobot.online
 [mongo-db]
 mongodb.gonepudirobot.online
+[users]
+user.gonepudirobot.online
