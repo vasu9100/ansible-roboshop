@@ -10,7 +10,7 @@
         #remote_src: yes
     - name: INSTALLING MONGO DB
       dnf:
-        name: mongo-repo
+        name: mongodb-org
         state: present
     - name: MONGO START
       service:
