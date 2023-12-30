@@ -20,5 +20,4 @@
         state: started
         enabled: yes
     - name: We need to change the default root password
-      command:
-        - mysql_secure_installation --set-root-pass RoboShop@1        
+      command: mysql_secure_installation --set-root-pass RoboShop@1        
