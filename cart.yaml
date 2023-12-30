@@ -1,0 +1,48 @@
+---
+- name: THIS PLAYBOOK IS FOR CART INSTALLATION
+  hosts: CART
+  become: true
+  tasks:
+    - name: DISABLING NODEJS AND ENABLING AND INSTALLING NODE Node.js
+      command: "{{ item }}"
+      loop:
+        - dnf module disable nodejs -y
+        - dnf module enable nodejs:18 -y
+        - dnf module install nodejs -y
+
+    - name: CREATING ROBOSHOP USER
+      user:
+        name: roboshop
+
+    - name: CREATING APP DIRECTORY
+      file:
+        path: /app
+        state: directory
+
+    - name: DOWNLOADING CART CODE
+      get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/cart.zip
+        dest: /tmp
+
+    - name: UNZIPPING CODE
+      unarchive:
+        src: /tmp/cart.zip
+        dest: /app
+        remote_src: yes
+      args:
+        chdir: /app
+
+    - name: NPM INSTALLAING
+      dnf: npm install
+
+    - name: COPYING CART.repo
+      copy:
+        src: /home/centos/ansible-roboshop/cart.service
+        dest: /etc/systemd/system/
+      notify: RESTART CART
+  handlers:
+    - name: RESTART CART
+      service:
+        name: redis
+        state: started
+        enabled: yes
