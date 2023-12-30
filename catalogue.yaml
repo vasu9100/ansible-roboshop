@@ -26,7 +26,7 @@
         src: /tmp/catalogue.zip
         dest: /app
         remote_src: yes
-    - name: NPM ISNTALLATION PART
+    - name: NPM INSTALLATION PART
       command: npm install
       args:
         chdir: /app
@@ -43,9 +43,9 @@
       dnf:
         name: mongodb-org-shell
         state: present
-    - name: CHECK IF DATA EXISTS IN MONGODB
-      command: mongo --host mongodb.gonepudirobot.online --quiet --eval "db.catalogue.countDocuments({})"
-      ignore_errors: true
+    # - name: CHECK IF DATA EXISTS IN MONGODB
+    #   command: mongo --host mongodb.gonepudirobot.online --quiet --eval "db.catalogue.countDocuments({})"
+    #   ignore_errors: true
       register: mongo_check_result
     - name: LOAD DATA INTO MONGODB IF IT DOESN'T EXIST
       command: mongo --host mongodb.gonepudirobot.online < /app/schema/catalogue.js
@@ -58,4 +58,4 @@
     loop:
       - systemctl daemon-reload
       - systemctl enable catalogue
-      - systemctl restart catalogue
+      - systemctl start catalogue
