@@ -1,0 +1,31 @@
+---
+- name: THIS PLAY BOOK FOR REDIS
+  hosts: redis
+  become: true
+  tasks:
+    - name: REDIS REPO INSTALLATION
+      dnf:
+        name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+        state: present
+        disable_gpg_check: true
+    
+    - name: REDIS INSTALLATION
+      command: "{{ item }}"
+      loop:
+        - dnf module enable redis:remi-6.2 -y
+        - dnf install redis -y
+
+    - name: REPLACE REDIS LOCAL HOST
+      replace:
+        path: /etc/redis/redis.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+      notify: START & ENABLE REDIS  
+
+  handlers:
+    - name: START & ENABLE REDIS
+      command: "{{ item }}"
+      loop:
+        - systemctl enable redis
+        - systemctl start redis
+
