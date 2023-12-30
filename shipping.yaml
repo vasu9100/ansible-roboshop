@@ -50,7 +50,5 @@
 
     - name:
       service:
-        name: shiiping
+        name: shipping
         state: restarted 
-
-          
