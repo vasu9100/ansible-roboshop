@@ -1,8 +1,6 @@
 ---
 - name: Install maven
-  dnf:
-    name: maven
-    state: present
+  command: dnf install maven -y
 - name: Create roboshop user
   user:
     name: roboshop
