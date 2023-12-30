@@ -46,7 +46,7 @@
         name: mysql
         state: present
     - name: LOAD THE DATA
-      command: "mysql -h mysql.gonepudirobot.online -uroot -pRoboShop@1 < /app/schema/shipping.sql"
+      Shell: "mysql -h mysql.gonepudirobot.online -uroot -pRoboShop@1 < /app/schema/shipping.sql"
 
     - name:
       service:
