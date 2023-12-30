@@ -12,3 +12,5 @@ redis.gonepudirobot.online
 cart.gonepudirobot.online
 [mysql]
 mysql.gonepudirobot.online
+[shipping]
+shipping.gonepudirobot.online
