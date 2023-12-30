@@ -29,6 +29,8 @@
         chdir: /app
     - name: rename
       command: mv target/shipping-1.0.jar shipping.jar
+      args:
+        chdir: /app
     - name: copying shiiping .servive file
       copy:
         src: /home/centos/ansible-roboshop/shipping.service
