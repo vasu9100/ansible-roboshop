@@ -1,6 +1,6 @@
 ---
 - name: THIS PLAYBOOK IS FOR CART INSTALLATION
-  hosts: CART
+  hosts: cart
   become: true
   tasks:
     - name: DISABLING NODEJS AND ENABLING AND INSTALLING NODE Node.js
