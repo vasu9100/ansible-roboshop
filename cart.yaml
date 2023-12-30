@@ -43,6 +43,6 @@
   handlers:
     - name: RESTART CART
       service:
-        name: redis
+        name: cart
         state: started
         enabled: yes
