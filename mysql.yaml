@@ -1,0 +1,24 @@
+---
+- name: MY SQL INSTALLATION
+  hosts: mysql
+  become: true
+  tasks:
+    - name: MY SQL REPO COPYING
+      command: dnf module disable mysql -y
+    
+    - name: Setup the MySQL5.7 repo file
+      copy:
+        src: /home/centos/ansible-roboshop/mysql.repo
+        dest: /etc/yum.repos.d/
+    - name: Install My Sql SERVER
+      dnf:
+        name: mysql-community-server
+        state: present
+    - name: start my SQL SERVER
+      service:
+        name: mysqld
+        state: started
+        enabled: yes
+    - name: We need to change the default root password
+      command:
+        - mysql_secure_installation --set-root-pass RoboShop@1        

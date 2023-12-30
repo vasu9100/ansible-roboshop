@@ -10,3 +10,5 @@ user.gonepudirobot.online
 redis.gonepudirobot.online
 [cart]
 cart.gonepudirobot.online
+[mysql]
+mysql.gonepudirobot.online
