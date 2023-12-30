@@ -33,7 +33,7 @@
         chdir: /app
 
     - name: NPM INSTALLAING
-      dnf: npm install
+      command: npm install
 
     - name: COPYING CART.repo
       copy:

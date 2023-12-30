@@ -8,3 +8,5 @@ mongodb.gonepudirobot.online
 user.gonepudirobot.online
 [redis]
 redis.gonepudirobot.online
+[cart]
+cart.gonepudirobot.online
