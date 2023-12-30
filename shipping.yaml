@@ -1,52 +1,54 @@
 ---
-- name: Install maven
-  command: dnf install maven -y
-- name: Create roboshop user
-  user:
-    name: roboshop
-- name: App directory creation
-  file:
-    path: /app
-    state: directory
-- name: Download the application code to created app directory.
-  get_url:
-    url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
-    dest: /tmp
-- name: UNZIPPING
-  unarchive:
-    src: /tmp/shipping.zip
-    dest: /app
-    remote_src: yes
-- name: mvn clean
-  command: mvn clean pacakge
-  args:
-    chdir: /app
-- name: rename
-  command: mv target/shipping-1.0.jar shipping.jar
-- name: copying shiiping .servive file
-  copy:
-    src: /home/centos/ansible-roboshop/shipping.service
-    dest: /etc/systemd/system/      
-- name: start the service
-  command: "{{ item }}"
-  loop:
-    - systemctl daemon-reload
-    - systemctl start shipping
-    - systemctl enable shipping
-- name: INSTALL MY SQL
-  ansible.builtin.dnf:
-    name: mysql
-    state: present
-- name: LOAD THE DATA
-  command: mysql -h mysql.gonepudirobot.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+- name: THIS IS FOR shiiping
+  hosts: shipping
+  become: true
+  tasks:
+    - name: Install maven
+      dnf:
+        name: maven
+        state: present
+    - name: Create roboshop user
+      user:
+        name: roboshop
+    - name: App directory creation
+      file:
+        path: /app
+        state: directory
+    - name: Download the application code to created app directory.
+      get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
+        dest: /tmp
+    - name: UNZIPPING
+      unarchive:
+        src: /tmp/shipping.zip
+        dest: /app
+        remote_src: yes
+    - name: mvn clean
+      command: mvn clean pacakge
+      args:
+        chdir: /app
+    - name: rename
+      command: mv target/shipping-1.0.jar shipping.jar
+    - name: copying shiiping .servive file
+      copy:
+        src: /home/centos/ansible-roboshop/shipping.service
+        dest: /etc/systemd/system/      
+    - name: start the service
+      command: "{{ item }}"
+      loop:
+        - systemctl daemon-reload
+        - systemctl start shipping
+        - systemctl enable shipping
+    - name: INSTALL MY SQL
+      ansible.builtin.dnf:
+        name: mysql
+        state: present
+    - name: LOAD THE DATA
+      command: mysql -h mysql.gonepudirobot.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
 
-- name:
-  service:
-    name: shiiping
-    state: restarted   
-
-
-
-
+    - name:
+      service:
+        name: shiiping
+        state: restarted 
 
           
