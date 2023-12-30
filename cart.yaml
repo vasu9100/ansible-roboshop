@@ -39,11 +39,8 @@
       copy:
         src: /home/centos/ansible-roboshop/cart.service
         dest: /etc/systemd/system/
-      notify: RESTART CART
-    - name: daemon-reload
-      command:
-       - systemctl daemon-reload  
-  handlers:
+    - name: daemonreload
+      command: systemctl daemon-reload   
     - name: RESTART CART
       service:
         name: cart
